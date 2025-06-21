@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ministries - Holy Cross</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     :root {
       --navy-blue: #001f3f;
@@ -12,36 +11,24 @@
       --white: #ffffff;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-color: var(--white);
       display: flex;
+      background-color: var(--white);
       background-image: url('https://images.pexels.com/photos/260286/pexels-photo-260286.jpeg?auto=compress&cs=tinysrgb&w=600');
       background-repeat: repeat;
-      background-size: auto;
-      background-position: top left;
     }
 
     .sidebar {
       width: 250px;
-      padding-top: 20px;
-      min-height: 100vh;
-      color: var(--white);
-    }
-
-    .vertical-nav {
-      padding: 20px;
       background: transparent;
+      min-height: 100vh;
     }
 
     .vertical-nav ul {
       list-style: none;
-      padding: 0;
+      padding: 20px;
       margin: 0;
       display: flex;
       flex-direction: column;
@@ -54,16 +41,13 @@
       background-color: #1d2b45;
       color: white;
       text-decoration: none;
-      font-weight: 500;
       border-radius: 6px;
-      transition: all 0.3s ease;
     }
 
     .vertical-nav ul li a:hover,
     .vertical-nav ul li.active a {
       background-color: var(--sandal);
       font-weight: bold;
-      border: none;
     }
 
     .bg-container {
@@ -76,106 +60,102 @@
       color: var(--sandal);
       padding: 20px;
       border-radius: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       margin-bottom: 30px;
-    }
-
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .header-logo {
-      width: 70px;
-      height: 70px;
-      border-radius: 10px;
-      object-fit: cover;
-    }
-
-    .header-search input {
-      padding: 8px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-      font-size: 1em;
-    }
-
-    .header-search button {
-      background-color: var(--sandal);
-      color: var(--navy-blue);
-      padding: 8px 12px;
-      font-weight: bold;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
     }
 
     .main-section {
       display: flex;
-      gap: 2rem;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
     }
 
-    .ministry-list {
+    content-wrapper{
       flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
+      position: relative;
+      width: 100%;
+      height: 100%;
     }
 
     .ministry-item {
+      width: 700px;
+      height: 550px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       border: 1px solid #ccc;
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       cursor: pointer;
-      text-align: center;
-      transition: transform 0.2s;
+      background-color: #fff;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 0; /* Remove internal padding */
     }
 
-    .ministry-item:hover {
-      transform: scale(1.02);
+    .ministry-img-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      display: flex;
     }
+
+    .ministry-img-wrapper img {
+      width: 700px;
+      height: 550px;
+      object-fit: contain; 
+    }
+
 
     .ministry-title {
       background-color: var(--sandal);
-      padding: 10px;
-      font-weight: bold;
-    }
-
-    .ministry-item img {
       width: 100%;
-      height: 160px;
-      object-fit: cover;
+      text-align: center;
+      padding: 5px;
+      border-radius: 5px;
     }
 
-    .subheadings-display {
-      flex: 1;
+    .subheadings-popup {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none;
+      width: 100%;
+      height: 100%;
       background-color: #f9f9f9;
       padding: 20px;
-      border-radius: 12px;
-      border: 1px solid #ccc;
+      box-sizing: border-box;
+      border-radius: 6px;
+      margin-top: 10px;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      flex: 1;
+      overflow-y: auto;
+
     }
 
-    .subheadings-display h3 {
+
+    .subheadings-popup h4 {
       margin-top: 0;
+      margin: 0 0 10px 0;
       color: var(--navy-blue);
+      font-size: 1.5rem;
     }
 
-    .subheadings-display ul {
-      list-style-type: disc;
+    .subheadings-popup ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
       padding-left: 20px;
     }
 
-    .subheadings-display ul li {
-      margin-bottom: 8px;
-    }
-
-    @media (max-width: 768px) {
-      .main-section {
-        flex-direction: column;
-      }
+    .subheadings-popup ul li {
+      margin: 5px 0;
     }
   </style>
 </head>
@@ -183,82 +163,102 @@
   <div class="sidebar">
     <nav class="vertical-nav">
       <ul>
-        <li class="active"><a href="index.html">Home</a></li>
-        <li><a href="ministry.html">Ministry</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li class="active"><a href="ministry.html">Ministry</a></li>
         <li><a href="#">Formation</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="">About us</a></li>
+        <li><a href="">Contact</a></li>
       </ul>
     </nav>
   </div>
-
   <div class="bg-container">
     <div class="header-section">
-      <div class="header-left">
-        <img src="asset/Logo.png" class="header-logo" alt="Holy Cross Logo">
-        <h2>Holy Cross Congregation - Tamil Nadu</h2>
-      </div>
-      <div class="header-search">
-        <input type="text" placeholder="Search...">
-        <button>Search</button>
-      </div>
+      <h2>Congregation of Holy Cross - Province of Tamil Nadu</h2>
     </div>
-
     <div class="main-section">
-      <!-- Ministry Cards -->
-      <div class="ministry-list">
-        <div class="ministry-item" onclick="showSubHeadings(this, 0)">
-          <div class="ministry-title">Education Ministry</div>
-          <img src="https://imgs.search.brave.com/qIME4DTcJNj89CHecSmYnlOWd8TCeY6F029OB9WkveM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/Y3JlYXRlLnZpc3Rh/LmNvbS9hcGkvbWVk/aWEvc21hbGwvMzAy/ODg2NTkvc3RvY2st/cGhvdG8tb25saW5l/LWVkdWNhdGlvbg" alt="Education">
+      <div class="ministry-item" onclick="togglePopup(event, 1)">
+        <div class="ministry-title">Parish Ministry</div>
+        <div class="ministry-img-wrapper">
+          <img src="https://imgs.search.brave.com/xu2awIwcGh7Il5U9rVdokOVpn4Jq9L2m-SuEHQmeXaY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9maWxl/cy5lY2F0aG9saWMu/Y29tLzEyMDMvcGlj/dHVyZXMvMjAxOC85/L3NwZXN1bmljYS5q/cGc_dD0xNTM3ODE5/NjY4MDAw" alt="Parish">
         </div>
-
-        <div class="ministry-item" onclick="showSubHeadings(this, 1)">
-          <div class="ministry-title">Parish Ministry</div>
-          <img src="https://imgs.search.brave.com/Romc6uckQkVynG4OxVND9lXT1YC98B5HQTfRZwDe5yU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNTI0/MjAzMjI1L3Bob3Rv/L29wZW4tYmlibGUt/b24tY2h1cmNoLWFs/dGFyLXdpdGgtcHJl/YWNoZXJzLWhhbmRz/LmpwZz9zPTYxMng2/MTImdz0wJms9MjAm/Yz1PRXdDNE5laExX/MlJHcDM1SG5NOTZB/SGplMU1lYS1VWmxn/RHN0dGliZkUwPQ" alt="Healthcare">
-        </div>
-
-        <div class="ministry-item" onclick="showSubHeadings(this, 2)">
-          <div class="ministry-title">Family Ministry</div>
-          <img src="https://imgs.search.brave.com/AZK7CSXK-DzvNb0OIXrLL2IlDDPcO0JZciFD3XkktdY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/c2h1dHRlcnN0b2Nr/LmNvbS9pbWFnZS1w/aG90by9mYW1pbHkt/cHJheWluZy13b3Jz/aGlwLWdvZC1jaHVy/Y2gtMjYwbnctMTk5/MTAxOTA3NC5qcGc" alt="Social Work">
-        </div>
-
-        <div class="ministry-item" onclick="showSubHeadings(this, 3)">
-          <div class="ministry-title">Social Ministry</div>
-          <img src="https://imgs.search.brave.com/VNlZ3yILCaoDNR7BpYVTF7mewOE0kXblW44MTfVPLcY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Y2F0aG9saWNjaGFy/aXRpZXN1c2Eub3Jn/L3dwLWNvbnRlbnQv/dXBsb2Fkcy8yMDIz/LzEyL3BzbS1yZXNv/dXJjZS1wYWdlLXBy/aXNvbi1taW5pc3Ry/eS0xMDI0eDY4My5q/cGc" alt="Pastoral">
+        <div class="subheadings-popup">
+          <h4>Parish Ministry</h4>
+          <ul>
+            <li></li>
+          </ul>
         </div>
       </div>
-
-      <!-- Subheadings Area -->
-      <div class="subheadings-display">
-        <h3 id="subheading-title">Select a Ministry</h3>
-        <ul id="subheadings-list">
-          <!-- Content will be inserted dynamically -->
-        </ul>
+      <div class="ministry-item" onclick="togglePopup(event, 1)">
+        <div class="ministry-title">Education Ministry</div>
+        <div class="ministry-img-wrapper">
+          <img src="https://imgs.search.brave.com/GVnsgii0T-Uculs3lF70rKOeJZV_S_qiZWv9X1PS-SU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvZW4vdGh1bWIv/Zi9mOS9Db2xsZWdl/X29mX3RoZV9Ib2x5/X0Nyb3NzX2xvZ28u/c3ZnLzUxMnB4LUNv/bGxlZ2Vfb2ZfdGhl/X0hvbHlfQ3Jvc3Nf/bG9nby5zdmcucG5n" alt="Education">
+        </div>
+        <div class="subheadings-popup">
+          <h4>Education Ministry</h4>
+          <ul></ul>
+        </div>
+      </div>
+      <div class="ministry-item" onclick="togglePopup(event, 2)">
+        <div class="ministry-title">Family Ministry</div>
+        <div class="ministry-img-wrapper">
+          <img src="https://imgs.search.brave.com/UnIbpZU9RnpOL-pi1u_vgMlAw4Jc7xUNyaK0swFIiIk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/bXVzZXVtb2ZmYW1p/bHlwcmF5ZXIub3Jn/L2hzLWZzL2h1YmZz/L011c2V1bSUyMG9m/JTIwRmFtaWx5JTIw/UHJheWVyL1dlYnNp/dGUvNy5wbmc_d2lk/dGg9MTIwMCZoZWln/aHQ9NjI3Jm5hbWU9/Ny5wbmc" alt="Family">
+        </div>
+        <div class="subheadings-popup">
+          <h4>Family Ministry</h4>
+          <ul></ul>
+        </div>
+      </div>
+      <div class="ministry-item" onclick="togglePopup(event, 3)">
+        <div class="ministry-title">Social Ministry</div>
+        <div class="ministry-img-wrapper">
+          <img src="" alt="Social">
+        </div>
+        <div class="subheadings-popup">
+          <h4>Social Ministry</h4>
+          <ul></ul>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
     const subheadingsData = [
-      ["Schools", "Colleges", "Scholarships", "Adult Literacy"],
-      ["Hospitals", "Clinics", "Mobile Camps", "Mental Health"],
-      ["Orphanages", "Women Empowerment", "Tribal Upliftment", "Old Age Homes"],
-      ["Mission Work", "Prayer Services", "Youth Ministry", "Bible Study"]
+      ["_____", "______", "_____", "____"],
+      ["____", "____", "____", "____"],
+      ["____", "____", "____", "____"],
+      ["____", "____", "____", "____"]
     ];
 
-    function showSubHeadings(element, index) {
-      const title = element.querySelector('.ministry-title').innerText;
-      document.getElementById('subheading-title').innerText = title;
+    function togglePopup(event, index) {
+  event.stopPropagation();
 
-      const list = document.getElementById('subheadings-list');
-      list.innerHTML = "";
-      subheadingsData[index].forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item;
-        list.appendChild(li);
-      });
-    }
+  // Hide all subheadings and show all images
+  document.querySelectorAll('.ministry-item').forEach((item, i) => {
+    item.querySelector('.subheadings-popup').style.display = 'none';
+    item.querySelector('.ministry-img-wrapper').style.display = 'block';
+  });
+
+  // Show clicked item's subheadings and hide image
+  const item = event.currentTarget;
+  const popup = item.querySelector('.subheadings-popup');
+  const ul = popup.querySelector('ul');
+  ul.innerHTML = '';
+  subheadingsData[index].forEach(sub => {
+    const li = document.createElement('li');
+    li.textContent = sub;
+    ul.appendChild(li);
+  });
+
+  // Hide image, show subheadings
+  item.querySelector('.ministry-img-wrapper').style.display = 'none';
+  popup.style.display = 'block';
+}
+
+
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.subheadings-popup').forEach(popup => popup.style.display = 'none');
+    });
   </script>
 </body>
 </html>
